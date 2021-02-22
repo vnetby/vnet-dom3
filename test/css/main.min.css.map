@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://dom3.vnetby.net/./modules/slider/style.scss"],"names":[],"mappings":"AAAA;EACE;AACF,C","file":"../css/main.min.css","sourcesContent":["body {\n  display: none !important;\n}\n"],"sourceRoot":""}

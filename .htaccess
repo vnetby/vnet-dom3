@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/test/
+RewriteRule ^(.*)$ /test/$1 [L]
