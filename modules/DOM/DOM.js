@@ -79,7 +79,7 @@ class DOM {
         let height = el.offsetHeight;
         el.style.height = `${height}px`;
 
-        el.dataset.slideUpTimer = setTimeout(() => {
+        setTimeout(() => {
             if (!el.classList.contains('slide-up')) return;
             el.style.height = '0px';
         }, 60);
@@ -117,6 +117,104 @@ class DOM {
         }
 
         return item;
+    }
+
+
+    jsonParse(obj) {
+        if (!obj) return null;
+        let res = null;
+
+        try {
+            res = JSON.parse(obj);
+        } catch (err) {
+            console.error(err);
+        }
+
+        return res;
+    }
+
+
+    jsonStringify(obj) {
+        if (!obj) return null;
+        let res = null;
+
+        try {
+            res = JSON.stringify(obj);
+        } catch (err) {
+            console.error(err);
+        }
+
+        return res;
+    }
+
+
+    async ajax({ url, data, xhrEvents, getXhr, success, error, method, headers }) {
+        return new Promise(async (resolve, reject) => {
+            data = this._getRequestData(data);
+            method = this._getRequstMethod(method, data);
+
+            let xhr = new XMLHttpRequest;
+            xhr.open(method, url, true);
+
+            this._setRequestHeader(xhr, headers);
+
+            if (xhrEvents) {
+                for (let event in xhrEvents) {
+                    if (event === loadend) continue;
+                    xhr.addEventListener(event, xhrEvents[event]);
+                }
+            }
+
+            xhr.addEventListener('loadend', (res) => {
+                if (res.target.status !== 200) {
+                    error && error(res.target, res);
+                } else {
+                    success && success(res.target, res);
+                    !getXhr && resolve(res.target, res);
+                }
+            });
+
+            xhr.send(data);
+
+            if (getXhr) {
+                resolve(xhr);
+            }
+        });
+    }
+
+
+
+    _getRequestData(data) {
+        if (!data) return null;
+
+        let type = typeof data;
+
+        if (type === 'string') return data;
+        if (type !== 'object') return null;
+        if (data instanceof FormData) return data;
+
+        let requestData = new FormData();
+
+        for (let key in data) {
+            requestData.append(key, data[key]);
+        }
+
+        return requestData;
+    }
+
+
+
+    _getRequstMethod(method, data) {
+        if (method) return method;
+        return data ? 'post' : 'get';
+    }
+
+
+    _setRequestHeader(xhr, headers) {
+        if (!headers) return;
+        for (let key in headers) {
+            xhr.setRequestHeader(key, headers[key]);
+        }
     }
 
 

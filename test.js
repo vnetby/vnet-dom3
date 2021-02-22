@@ -10,14 +10,19 @@ import dom from "./modules/DOM";
 
 
 
-const init = () => {
+const init = async () => {
 
     // testJQuery();
     // testDOM();
-
-    dom('.link').on('click', (e, el) => {
-        e.preventDefault();
-        el.next().toggleSlide();
+    await dom.ajax({
+        url: '/ajax.php',
+        data: dom.jsonStringify({
+            name: 'vadzim',
+            lastname: 'kananovich'
+        }),
+        success: (res, event) => {
+            console.log(event);
+        }
     });
 
     // dom('div').addClass('is-div');
