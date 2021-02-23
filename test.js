@@ -7,25 +7,26 @@ import $ from "jquery";
 
 
 import dom from "./modules/DOM";
+import tabs from "./modules/tabs";
 
 
 
 const init = async () => {
+    tabs();
+    // // testJQuery();
+    // // testDOM();
+    // await dom.ajax({
+    //     url: '/ajax.php',
+    //     data: dom.jsonStringify({
+    //         name: 'vadzim',
+    //         lastname: 'kananovich'
+    //     }),
+    //     success: (res, event) => {
+    //         console.log(event);
+    //     }
+    // });
 
-    // testJQuery();
-    // testDOM();
-    await dom.ajax({
-        url: '/ajax.php',
-        data: dom.jsonStringify({
-            name: 'vadzim',
-            lastname: 'kananovich'
-        }),
-        success: (res, event) => {
-            console.log(event);
-        }
-    });
-
-    // dom('div').addClass('is-div');
+    // // dom('div').addClass('is-div');
 }
 
 

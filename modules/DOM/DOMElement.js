@@ -243,6 +243,9 @@ class DOMElement {
         return this.each(el => dom.removeClass(el, className));
     }
 
+    hasClass(className) {
+        return this._element.every(item => item.classList.contains(className));
+    }
 
     slideUp() {
         return this.each(el => {

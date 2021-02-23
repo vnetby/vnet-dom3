@@ -1,1 +1,16 @@
 
+.js-dom-tabs .tabs-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.js-dom-tabs .tab {
+  transition-duration: 0.2s;
+  transition-property: opacity;
+}
+.js-dom-tabs .tab:not(.active) {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/*# sourceMappingURL=main.min.css.map*/

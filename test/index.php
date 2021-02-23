@@ -68,6 +68,36 @@
                     </ul>
                 </div>
             </section>
+
+
+            <section class="section section-tabs">
+                <div class="container">
+                    <h2 class="section-title">DOM tabs</h2>
+                    <div class="tabs-row js-dom-tabs">
+                        <div class="tabs-nav">
+                            <div class="tab-nav-col">
+                                <a href="#" class="tab-link" data-target="infoTab">Характеристики</a>
+                            </div>
+                            <div class="tab-nav-col">
+                                <a href="#" class="tab-link" data-target="descTab">Описание</a>
+                            </div>
+                        </div>
+                        <div class="tabs-wrap">
+                            <div class="tab" id="infoTab">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, officiis iste! Iure nihil sequi perferendis perspiciatis! Dolorum facilis natus blanditiis, officiis esse accusamus, assumenda dignissimos aperiam pariatur sed numquam laudantium?
+                            </div>
+                            <div class="tab" id="descTab">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, officiis iste! Iure nihil sequi perferendis perspiciatis! Dolorum facilis natus blanditiis, officiis esse accusamus, assumenda dignissimos aperiam pariatur sed numquam laudantium?
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, officiis iste! Iure nihil sequi perferendis perspiciatis! Dolorum facilis natus blanditiis, officiis esse accusamus, assumenda dignissimos aperiam pariatur sed numquam laudantium?
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, officiis iste! Iure nihil sequi perferendis perspiciatis! Dolorum facilis natus blanditiis, officiis esse accusamus, assumenda dignissimos aperiam pariatur sed numquam laudantium?
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, officiis iste! Iure nihil sequi perferendis perspiciatis! Dolorum facilis natus blanditiis, officiis esse accusamus, assumenda dignissimos aperiam pariatur sed numquam laudantium?
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, officiis iste! Iure nihil sequi perferendis perspiciatis! Dolorum facilis natus blanditiis, officiis esse accusamus, assumenda dignissimos aperiam pariatur sed numquam laudantium?
+                                SECOND TAB
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer class="footer">

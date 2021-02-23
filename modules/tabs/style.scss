@@ -1,0 +1,15 @@
+.js-dom-tabs {
+  .tabs-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .tab {
+    transition-duration: 0.2s;
+    transition-property: opacity;
+  }
+  .tab:not(.active) {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+  }
+}
