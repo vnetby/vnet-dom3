@@ -18,8 +18,6 @@
     window.CustomEvent = CustomEvent;
 })();
 
-import "@babel/polyfill";
-
 import DOMElement from "./DOMElement";
 import DOM from "./DOM";
 

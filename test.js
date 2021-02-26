@@ -1,7 +1,7 @@
-import "@babel/polyfill";
+// import "@babel/polyfill";
 
 
-import $ from "jquery";
+// import $ from "jquery";
 
 
 import dom from "./modules/DOM";
@@ -9,17 +9,21 @@ import tabs from "./modules/tabs";
 import dropdown from "./modules/dropdown";
 import cssSlider from "./modules/cssSlider";
 
+import domJSX from "./modules/domJSX";
+
 
 
 const init = async () => {
-    tabs();
-    dropdown();
-    cssSlider();
-    dom('.js-toggle-slide').on('click', (e, $btn) => {
-        e.preventDefault();
-        $btn.next().toggleSlide();
-    });
+    // tabs();
+    // dropdown();
+    // cssSlider();
+    // dom('.js-toggle-slide').on('click', (e, $btn) => {
+    //     e.preventDefault();
+    //     $btn.next().toggleSlide();
+    // });
 }
+
+
 
 
 

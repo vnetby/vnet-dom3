@@ -17,7 +17,7 @@ const SCRIPTS = env => createConfig({ entry: '/test.js', outputFile: 'main.min.j
 const createConfig = ({ entry, outputFile, cssFileName }) => {
   return {
     mode: !isDev ? 'production' : 'development',
-    entry: `${theme}${entry}`,
+    entry: ['@babel/polyfill', `${theme}${entry}`],
     output: {
       path: path.resolve(__dirname, 'test/js'),
       filename: outputFile
@@ -31,8 +31,19 @@ const createConfig = ({ entry, outputFile, cssFileName }) => {
             loader: "babel-loader",
             options: {
               cacheDirectory: true,
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: ['@babel/plugin-transform-shorthand-properties']
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react'
+              ],
+              plugins: [
+                '@babel/plugin-transform-shorthand-properties',
+                [
+                  '@babel/plugin-transform-react-jsx',
+                  {
+                    "pragma": "domJSX"
+                  }
+                ]
+              ]
             }
           }
         },
