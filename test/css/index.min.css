@@ -7,6 +7,22 @@
 .dom-css-slider label {
   cursor: pointer;
 }
+.dom-dropdown {
+  position: relative;
+}
+.dom-dropdown .dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0px;
+  z-index: 2;
+  transition-duration: 0.3s;
+  transition-property: transform, opacity;
+}
+.dom-dropdown .dropdown:not(.active) {
+  transform: translateY(15px);
+  opacity: 0;
+  pointer-events: none;
+}
 .js-dom-tabs .tabs-wrap {
   position: relative;
   overflow: hidden;
@@ -31,22 +47,6 @@
 }
 .js-dom-tabs.translate-tabs .tab.active ~ .tab {
   transform: translateX(100%);
-}
-.dom-dropdown {
-  position: relative;
-}
-.dom-dropdown .dropdown {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0px;
-  z-index: 2;
-  transition-duration: 0.3s;
-  transition-property: transform, opacity;
-}
-.dom-dropdown .dropdown:not(.active) {
-  transform: translateY(15px);
-  opacity: 0;
-  pointer-events: none;
 }
 .dom-css-slider .slider-outher {
   width: 100%;

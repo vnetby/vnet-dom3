@@ -1,11 +1,11 @@
 import "./style.scss";
 
+import dom from "../DOM/";
 
 
-const cssSlider = (context) => {
+const cssSlider = (slider) => {
 
 }
 
 
-
-export default cssSlider;
+dom.modules.cssSlider = cssSlider;

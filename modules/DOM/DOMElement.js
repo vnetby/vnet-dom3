@@ -92,6 +92,15 @@ class DOMElement {
     }
 
 
+    module(name, args) {
+        if (!dom.modules[name]) {
+            console.log(`module ${name} does not exists`);
+            return;
+        }
+        return this.each(item => dom.modules[name](item, args));
+    }
+
+
     parent() {
         let items = [];
         this.each(el => {
@@ -276,7 +285,7 @@ class DOMElement {
         return this.each(el => {
             if (!el) return;
             el.addEventListener(event, (e) => {
-                fn(e, dom(e.currentTarget), this);
+                fn(e, this);
             });
         });
     }

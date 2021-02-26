@@ -3,30 +3,28 @@ import "./style.scss";
 import dom from "../DOM";
 
 
+let INITED_ITEMS = [];
 
 
-const tabs = (context, selector = '.js-dom-tabs') => {
-  dom(selector).each(tab => {
-    init(tab);
-  }, context);
-}
+const tabs = wrap => {
+  if (INITED_ITEMS.indexOf(wrap) > -1) return;
 
-
-
-const init = wrap => {
-  dom('.tab-link', wrap).on('click', (e, $btn) => {
+  dom('.tab-link', wrap).on('click', (e) => {
     e.preventDefault();
 
-    if ($btn.hasClass('active')) return;
+    let _btn = dom(e.currentTarget);
+
+    if (_btn.hasClass('active')) return;
 
     dom('.tab-link', wrap).removeClass('active');
-    $btn.addClass('active');
+    _btn.addClass('active');
 
     dom('.tab', wrap).removeClass('active');
     dom(`#${e.currentTarget.dataset.target}`, wrap).addClass('active');
   });
+
+  INITED_ITEMS.push(wrap);
 }
 
 
-
-export default tabs;
+dom.modules.tabs = tabs;

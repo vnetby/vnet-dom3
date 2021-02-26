@@ -2,24 +2,22 @@
 
 import "../../css/dev/index.scss";
 
+import "../../../modules/dropdown";
+import "../../../modules/tabs";
+import "../../../modules/cssSlider";
+
 
 import dom from "../../../index.js";
 
-import tabs from "../../../modules/tabs";
-import dropdown from "../../../modules/dropdown";
-import cssSlider from "../../../modules/cssSlider";
-
-import domJSX from "../../../modules/domJSX";
 
 
+const init = () => {
+    dom('.js-toggle-dropdown').module('dropdown');
+    dom('.js-dom-tabs').module('tabs');
 
-const init = async () => {
-    tabs();
-    dropdown();
-    cssSlider();
-    dom('.js-toggle-slide').on('click', (e, $btn) => {
+    dom('.js-toggle-slide').on('click', (e) => {
         e.preventDefault();
-        $btn.next().toggleSlide();
+        dom(e.currentTarget).next().toggleSlide();
     });
 }
 

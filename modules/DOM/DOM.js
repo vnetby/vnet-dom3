@@ -5,6 +5,8 @@ class DOM {
         this.document = this.window.document;
         this.body = this.document.body;
         this.head = this.document.head;
+
+        this.modules = {};
     }
 
 
