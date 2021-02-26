@@ -4,7 +4,8 @@
 // import $ from "jquery";
 
 
-import dom from "./modules/DOM";
+import dom from "../../../index.js";
+
 import tabs from "./modules/tabs";
 import dropdown from "./modules/dropdown";
 import cssSlider from "./modules/cssSlider";
@@ -14,6 +15,9 @@ import domJSX from "./modules/domJSX";
 
 
 const init = async () => {
+
+    console.log(dom);
+
     // tabs();
     // dropdown();
     // cssSlider();

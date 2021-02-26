@@ -1,8 +1,4 @@
 /.git
-/package-lock.json
-/package.json
-/test.js
-/webpack.config.js
 /.gitignore
 /.npmignore
 /test

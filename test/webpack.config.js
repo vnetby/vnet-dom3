@@ -4,23 +4,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const theme = `.`;
-
 const isDev = process.argv[2] !== '--env=build';
 
 // const HEAD_SCRIPTS = env => createConfig({ entry: '/js/dev/DOM/index.js', outputFile: 'head.min.js', cssFileName: 'head.min.css' });
 
-const SCRIPTS = env => createConfig({ entry: '/test.js', outputFile: 'main.min.js', cssFileName: '../css/main.min.css' });
+const SCRIPTS = env => createConfig({ isDev: isDev, entry: 'js/dev/index.js', outputFile: 'js/main.min.js', cssFile: '../css/index.min.css' });
 
 
 
-const createConfig = ({ entry, outputFile, cssFileName }) => {
+const createConfig = ({ isDev, entry, outputFile, cssFile }) => {
   return {
     mode: !isDev ? 'production' : 'development',
-    entry: ['@babel/polyfill', `${theme}${entry}`],
+    entry: ['@babel/polyfill', path.resolve(__dirname, entry)],
     output: {
-      path: path.resolve(__dirname, 'test/js'),
-      filename: outputFile
+      path: path.resolve(__dirname, path.dirname(outputFile)),
+      filename: path.basename(outputFile)
     },
     module: {
       rules: [
