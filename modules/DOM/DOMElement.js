@@ -21,8 +21,9 @@ class DOMElement {
      * @return {Array} (this._elements)
      * 
      */
-    get() {
-        return this._element;
+    get(index = null) {
+        if (index === null) return this._element;
+        return this._element[index];
     }
 
 

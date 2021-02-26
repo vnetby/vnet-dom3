@@ -13,3 +13,17 @@
     opacity: 0;
   }
 }
+
+.js-dom-tabs.translate-tabs {
+  .tab {
+    transition-duration: 0.3s;
+    transform: translateX(-100%);
+    transition-property: opacity, transform;
+  }
+  .tab.active {
+    transform: none;
+  }
+  .tab.active ~ .tab {
+    transform: translateX(100%);
+  }
+}

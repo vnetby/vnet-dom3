@@ -1,32 +1,24 @@
 import "@babel/polyfill";
 
-import "./modules/slider";
-
 
 import $ from "jquery";
 
 
 import dom from "./modules/DOM";
 import tabs from "./modules/tabs";
+import dropdown from "./modules/dropdown";
+import cssSlider from "./modules/cssSlider";
 
 
 
 const init = async () => {
     tabs();
-    // // testJQuery();
-    // // testDOM();
-    // await dom.ajax({
-    //     url: '/ajax.php',
-    //     data: dom.jsonStringify({
-    //         name: 'vadzim',
-    //         lastname: 'kananovich'
-    //     }),
-    //     success: (res, event) => {
-    //         console.log(event);
-    //     }
-    // });
-
-    // // dom('div').addClass('is-div');
+    dropdown();
+    cssSlider();
+    dom('.js-toggle-slide').on('click', (e, $btn) => {
+        e.preventDefault();
+        $btn.next().toggleSlide();
+    });
 }
 
 
