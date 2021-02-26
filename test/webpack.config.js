@@ -8,7 +8,7 @@ const isDev = process.argv[2] !== '--env=build';
 
 // const HEAD_SCRIPTS = env => createConfig({ entry: '/js/dev/DOM/index.js', outputFile: 'head.min.js', cssFileName: 'head.min.css' });
 
-const SCRIPTS = env => createConfig({ isDev: isDev, entry: 'js/dev/index.js', outputFile: 'js/main.min.js', cssFile: '../css/index.min.css' });
+const SCRIPTS = env => createConfig({ isDev: isDev, entry: 'js/dev/index.js', outputFile: 'js/index.min.js', cssFile: '../css/index.min.css' });
 
 
 
@@ -103,7 +103,7 @@ const createConfig = ({ isDev, entry, outputFile, cssFile }) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: cssFileName
+        filename: cssFile
       }),
       !isDev ?
         new OptimizeCssAssetsPlugin({
