@@ -59,11 +59,12 @@ const init = btn => {
 
 
 const closeDropdowns = (excludeBtn) => {
-  dom('.js-toggle-dropdown').each(btn => {
-    if (btn === excludeBtn) return;
-    dom(`#${btn.dataset.target}`).removeClass('active');
-    dom(btn).removeClass('active');
+  INITED_ITEMS.forEach(item => {
+    if (item === excludeBtn) return;
+    dom(`#${item.dataset.target}`).removeClass('active');
+    dom(item).removeClass('active');
   });
 }
 
-dom.modules.dropdown = dropdown;
+dom.addModule('dropdown', dropdown);
+// dom.modules.dropdown = dropdown;

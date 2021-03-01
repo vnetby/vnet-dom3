@@ -13,7 +13,7 @@ const domJSX = (tag, props, ...children) => {
 
     const el = attrs(document.createElement(tag), props);
 
-    children.flat().forEach(child => {
+    children.reduce((acc, val) => acc.concat(val), []).forEach(child => {
         if (typeof child === 'undefined') return;
         const node = !isString(child) ? child : document.createTextNode(child);
         el.appendChild(node);
@@ -39,6 +39,7 @@ const attrs = (el, props) => {
         }
 
         if (k === "class" || k === 'className') {
+            if (!val) continue;
             const classes = Array.isArray(val) ? val : [val];
             el.classList.add(...classes);
             continue;

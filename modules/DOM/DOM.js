@@ -1,3 +1,5 @@
+import dom from ".";
+
 class DOM {
 
     constructor() {
@@ -6,7 +8,76 @@ class DOM {
         this.body = this.document.body;
         this.head = this.document.head;
 
-        this.modules = {};
+        this._windowResizeCallbacks = [];
+        this._windowResizeTimer = null;
+
+        this._contentLoadCallbacks = [];
+
+        this._modules = {};
+
+        this.initWindowResize();
+        this.initContentLoad();
+    }
+
+
+    addModule(name, fn) {
+        if (!this._modules[name]) this._modules[name] = fn;
+    }
+
+
+    execModule(name, el, args) {
+        if (!this._modules[name]) {
+            console.error(`Module ${name} doesn't exists`);
+            return;
+        }
+        this._modules[name](el, args);
+    }
+
+
+    initWindowResize() {
+        clearTimeout(this._windowResizeTimer);
+        this.window.addEventListener('resize', e => {
+            this._windowResizeTimer = setTimeout(() => {
+                this._windowResizeCallbacks.forEach(fn => fn && fn(e));
+            }, 10);
+        });
+    }
+
+
+    onWindowResize(fn) {
+        this._windowResizeCallbacks.push(fn);
+    }
+
+
+    onContentLoad(fn) {
+        if (this.document !== 'loading') {
+            fn();
+            return;
+        }
+        this.document.addEventListener('DOMContentLoaded', e => {
+            console.log(e);
+            this._contentLoadCallbacks.push(fn);
+        });
+    }
+
+
+    initContentLoad() {
+        if (this.document !== 'loading') {
+            this._contentLoadCallbacks.forEach(fn => fn);
+            return;
+        }
+        this._contentLoadCallbacks.forEach(fn => fn);
+    }
+
+
+    dispatch(el, event, sets) {
+        let realSets = {
+            bubbles: true, cancelable: true, detail: undefined, ...sets
+        };
+        event.split(' ').forEach(ev => {
+            ev = new CustomEvent(ev, realSets);
+            el.dispatchEvent(ev);
+        });
     }
 
 
@@ -14,7 +85,7 @@ class DOM {
         let attr = el.getAttribute('style');
         if (!attr) return;
 
-        style = style.split(' ').map(item => `(${item}[^:]*:[^;]+;?)`).join('|');
+        style = style.split(' ').map(item => `(${this._fromCamelCase(item)}[^:]*:[^;]+;?)`).join('|');
 
         let regex = new RegExp(style, 'g');
         attr = attr.replace(regex, '').trim();
@@ -27,12 +98,21 @@ class DOM {
     }
 
 
+    getCss(el, style) {
+        return this.window.getComputedStyle(el)[style];
+    }
+
+
     addClass(el, className) {
         className.split(' ').forEach(name => !el.classList.contains(name) && el.classList.add(name));
     }
 
     removeClass(el, className) {
         className.split(' ').forEach(name => el.classList.contains(name) && el.classList.remove(name));
+    }
+
+    toggleClass(el, className) {
+        className.split(' ').forEach(name => el.classList.contains(name) ? el.classList.remove(name) : el.classList.add(name));
     }
 
     hasClass(el, className) {
@@ -182,6 +262,17 @@ class DOM {
                 resolve(xhr);
             }
         });
+    }
+
+
+    randomStr(length = 10) {
+        let result = '';
+        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
     }
 
 

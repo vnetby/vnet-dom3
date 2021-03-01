@@ -1,11 +1,13 @@
 // import $ from "jquery";
 
-import "../../css/dev/index.scss";
 
 import "../../../modules/dropdown";
 import "../../../modules/tabs";
-import "../../../modules/cssSlider";
+// import "../../../modules/cssSlider";
 
+import { setSlide, nextSlide } from "../../../modules/cssSlider";
+
+import "../../css/dev/index.scss";
 
 import dom from "../../../index.js";
 
@@ -18,6 +20,9 @@ const init = () => {
     dom('.js-toggle-slide').on('click', (e) => {
         e.preventDefault();
         dom(e.currentTarget).next().toggleSlide();
+    });
+
+    dom('.js-slider').module('cssSlider').on('init', (e, _slider) => {
     });
 }
 

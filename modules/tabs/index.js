@@ -27,4 +27,5 @@ const tabs = wrap => {
 }
 
 
-dom.modules.tabs = tabs;
+dom.addModule('tabs', tabs);
+// dom.modules.tabs = tabs;

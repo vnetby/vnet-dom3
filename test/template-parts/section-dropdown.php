@@ -2,7 +2,7 @@
     <div class="container">
         <h2 class="section-title">DOM dropdown</h2>
         <div class="dom-dropdown">
-            <a href="#" class="js-toggle-dropdown active" data-target="dropdown1">Toggle dropdown</a>
+            <a href="#" class="js-toggle-dropdown" data-target="dropdown1">Toggle dropdown</a>
             <div class="dropdown" id="dropdown1">
                 <a href="#" style="display: block;">Content 1</a>
                 <a href="#" style="display: block;">Content 2</a>

@@ -23,7 +23,18 @@ class DOMElement {
      */
     get(index = null) {
         if (index === null) return this._element;
+        if (index < 0) return null;
         return this._element[index];
+    }
+
+
+    first() {
+        return this.get(0);
+    }
+
+
+    last() {
+        return this.get(this.length - 1);
     }
 
 
@@ -93,11 +104,7 @@ class DOMElement {
 
 
     module(name, args) {
-        if (!dom.modules[name]) {
-            console.log(`module ${name} does not exists`);
-            return;
-        }
-        return this.each(item => dom.modules[name](item, args));
+        return this.each(item => dom.execModule(name, item, args));
     }
 
 
@@ -109,6 +116,11 @@ class DOMElement {
             items.push(parent);
         });
         return dom(items);
+    }
+
+
+    append(item) {
+        return this.each(el => el.appendChild(item));
     }
 
 
@@ -253,6 +265,11 @@ class DOMElement {
         return this.each(el => dom.removeClass(el, className));
     }
 
+
+    toggleClass(className) {
+        return this.each(el => dom.toggleClass(el, className));
+    }
+
     hasClass(className) {
         return this._element.every(item => item.classList.contains(className));
     }
@@ -261,6 +278,24 @@ class DOMElement {
         return this.each(el => {
             dom.slideUp(el);
         });
+    }
+
+
+    attr(attr, value) {
+        if (typeof value !== 'undefined') {
+            return this.each(item => {
+                item.setAttribute(attr, value);
+            });
+        }
+
+        if (!this._element[0]) return undefined;
+
+        return this._element[0].getAttribute(attr);
+    }
+
+
+    hasAttr(attr) {
+        return this._element.every(item => item.hasAttribute(attr));
     }
 
 
@@ -284,19 +319,20 @@ class DOMElement {
     on(event, fn) {
         return this.each(el => {
             if (!el) return;
-            el.addEventListener(event, (e) => {
-                fn(e, this);
+            event.split(' ').forEach(ev => {
+                if (!ev) return;
+                el.addEventListener(ev, (e) => {
+                    fn(e, this);
+                });
             });
         });
     }
 
 
     dispatch(event, sets) {
-        let realSets = {
-            bubbles: true, cancelable: true, detail: undefined, ...sets
-        };
-        let ev = new CustomEvent(event, realSets);
-        return this.each(item => item.dispatchEvent(ev));
+        return this.each(item => {
+            dom.dispatch(item, event, sets);
+        });
     }
 
 
