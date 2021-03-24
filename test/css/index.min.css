@@ -153,8 +153,7 @@
   overflow: hidden;
 }
 .dom-css-slider:before {
-  content: "slidesToShow: 2; slidesToScroll: 2";
-  content: "draggable: true";
+  content: "slidesToShow: 2; slidesToScroll: 2; draggable; dots; loop";
   display: block;
 }
 .dom-css-slider:after {

@@ -7,28 +7,33 @@ import domJSX from "../domJSX";
 let INITED_SLIDERS = [];
 
 
-const cssSlider = (slider) => {
+const cssSlider = (slider, sets) => {
     if (INITED_SLIDERS.indexOf(slider) > -1) return;
     INITED_SLIDERS.push(slider);
 
-    dom.onContentLoad(() => {
-        console.log('init');
-        init(slider);
-    });
+    init(slider, sets);
 }
 
 
 
-const init = slider => {
+const init = (slider, args) => {
     let _slider = dom(slider);
+
     let before = dom.window.getComputedStyle(slider, ':before');
 
-    console.log(before.content);
-    window.addEventListener('DOMContentLoaded', e => {
-        console.log(before.content);
-        // console.log(before.getPropertyValue('content'));
-    });
-    // let before = dom.getCss(_slider.get(0),)
+    let defSets = {
+        slidesToShow: 1,
+        draggable: false,
+        dots: false
+    };
+
+    let sets = getSliderSets(slider, defSets, args, before);
+
+    dom.onWindowResize(e => sets = getSliderSets(slider, defSets, args, before));
+
+    setInterval(() => {
+        // console.log(sets);
+    }, 1000);
 
     _slider.addClass('dom-css-slider');
 
@@ -102,6 +107,72 @@ const init = slider => {
         _slider.dispatch('init');
     }, 10);
 }
+
+
+const getSliderSets = (slider, defSets, sets = {}, before = {}) => {
+    let beforeSets = getBeforeSets(before.content);
+
+    let settings = {};
+
+    Object.keys(defSets).forEach(key => {
+        let type = typeof defSets[key];
+        if (type === "boolean") {
+            if (slider.dataset.hasOwnProperty(key)) {
+                if (slider.dataset[key] === 'false') {
+                    settings[key] = false;
+                    return;
+                }
+                settings[key] = true;
+                return;
+            }
+            if (beforeSets.hasOwnProperty(key)) {
+                if (beforeSets === 'false') {
+                    settings[key] = false;
+                }
+                settings[key] = true;
+                return;
+            }
+            settings[key] = defSets[key];
+            return;
+        }
+        if (type === "number") {
+            if (slider.dataset.hasOwnProperty(key)) {
+                settings[key] = parseFloat(slider.dataset[key]);
+                return;
+            }
+            if (beforeSets.hasOwnProperty(key)) {
+                settings[key] = parseFloat(beforeSets[key]);
+                return;
+            }
+            settings[key] = defSets[key];
+            return;
+        }
+        if (slider.dataset.hasOwnProperty(key)) {
+            settings[key] = slider.dataset[key];
+            return;
+        }
+        if (beforeSets.hasOwnProperty(key)) {
+            settings[key] = beforeSets[key];
+            return;
+        }
+        settings[key] = defSets[key];
+    });
+    return { ...settings, ...sets };
+}
+
+
+
+const getBeforeSets = before => {
+    if (!before || before === 'none') return {};
+    let settings = {};
+    before.replace(/[^\w\:\;]/g, '').split(';').forEach(row => {
+        row = row.split(':');
+        if (typeof row[1] === 'undefined') row[1] = true;
+        settings[row[0]] = row[1];
+    });
+    return settings;
+}
+
 
 
 

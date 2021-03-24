@@ -4,7 +4,7 @@ for ($s = 0; $s < 1; $s++) {
     <section class="section section-css-slider">
         <div class="container">
             <h2 class="section-title">CSS slider</h2>
-            <div class="js-slider" data-dots data-draggable>
+            <div class="js-slider dom-css-slider" data-dots data-draggable data-loop>
                 <?php
                 for ($i = 0; $i < 1; $i++) {
                 ?>

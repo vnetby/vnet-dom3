@@ -14,11 +14,8 @@
 .dom-css-slider {
   overflow: hidden;
   &:before {
-    content: "slidesToShow: 2; slidesToScroll: 2";
-    content: "draggable: true";
+    content: "slidesToShow: 2; slidesToScroll: 2; draggable; dots; loop";
     display: block;
-    // margin-top: -15px;
-    // display: none;
   }
   &:after {
     content: "test";

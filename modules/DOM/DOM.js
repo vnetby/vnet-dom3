@@ -50,23 +50,22 @@ class DOM {
 
 
     onContentLoad(fn) {
-        if (this.document !== 'loading') {
+        if (this.document.readyState === 'interactive' || this.document.readyState === 'complete') {
             fn();
-            return;
-        }
-        this.document.addEventListener('DOMContentLoaded', e => {
-            console.log(e);
+        } else {
             this._contentLoadCallbacks.push(fn);
-        });
+        }
     }
 
 
     initContentLoad() {
-        if (this.document !== 'loading') {
+        if (this.document.readyState === 'interactive' || this.document.readyState === 'complete') {
             this._contentLoadCallbacks.forEach(fn => fn);
-            return;
+        } else {
+            this.window.addEventListener('DOMContentLoaded', e => {
+                this._contentLoadCallbacks.forEach(fn => fn());
+            });
         }
-        this._contentLoadCallbacks.forEach(fn => fn);
     }
 
 
