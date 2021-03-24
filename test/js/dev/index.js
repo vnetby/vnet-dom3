@@ -1,4 +1,4 @@
-// import $ from "jquery";
+import $ from "jquery";
 
 
 import "../../../modules/dropdown";
@@ -14,16 +14,21 @@ import dom from "../../../index.js";
 
 
 const init = () => {
-    dom('.js-toggle-dropdown').module('dropdown');
-    dom('.js-dom-tabs').module('tabs');
+    // let el = dom('.js-toggle-dropdown').map();
+    // let items = dom('.js-toggle-dropdown');
+    // dom('.js-toggle-dropdown').module('dropdown');
+    // dom('.js-dom-tabs').module('tabs');
 
-    dom('.js-toggle-slide').on('click', (e) => {
-        e.preventDefault();
-        dom(e.currentTarget).next().toggleSlide();
-    });
+    // dom('.js-toggle-slide').on('click', (e) => {
+    //     e.preventDefault();
+    //     dom(e.currentTarget).next().toggleSlide();
+    // });
 
-    dom('.js-slider').module('cssSlider').on('init', (e, _slider) => {
-    });
+    // dom('.js-slider').module('cssSlider').on('init', (e, _slider) => {
+    // });
+
+    // testDOM();
+    // testJQuery();
 }
 
 
@@ -34,8 +39,10 @@ const init = () => {
 const testJQuery = () => {
     let time = performance.now();
 
-    for (let i = 0; i < 100; i++) {
-        $('div').removeClass('is-div is-div');
+    for (let i = 0; i < 10000; i++) {
+        // $('div').filter((i, item) => !item.classList.contains('dropdown')).addClass('active').removeClass('active');
+        // $('.js-toggle-dropdown').parent().addClass('test');
+        // $('div').removeClass('is-div is-div');
     }
 
     let endTime = performance.now();
@@ -47,8 +54,8 @@ const testJQuery = () => {
 const testDOM = () => {
     let time = performance.now();
 
-    for (let i = 0; i < 100; i++) {
-        dom('div').removeClass('is-div is-div other-div third-div');
+    for (let i = 0; i < 10000; i++) {
+        // dom('div').filter(item => !item.classList.contains('dropdown')).addClass('active').removeClass('active');
     }
 
     let endTime = performance.now();

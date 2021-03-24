@@ -13,6 +13,7 @@ class DOMElement {
         this._setArguments(selector, context, single);
         this._setElement();
         this.length = this._element.length;
+        // this._loop(this._element, (item, i) => this[i] = item);
     }
 
 
@@ -100,6 +101,11 @@ class DOMElement {
         });
 
         return dom(res);
+    }
+
+
+    filter(fn) {
+        return dom(this._element.filter(fn));
     }
 
 
@@ -393,6 +399,7 @@ class DOMElement {
             this._isSingle = false;
             this._context = dom.body;
             this._element = selector;
+            this._loop(selector, (el, i) => this[i] = el);
             return;
         }
 
@@ -440,20 +447,26 @@ class DOMElement {
         if (sType === 'string') {
             if (this._isSingle) {
                 let el = this._context.querySelector(this._selector);
-                this._element = el ? [el] : [];
+                if (el) {
+                    this._element = [el];
+                    this[0] = el;
+                } else {
+                    this._element = [];
+                }
             } else {
-                this._element = this._collectionToArray(this._context.querySelectorAll(this._selector));
+                this._element = this._collectionToArray(this._context.querySelectorAll(this._selector), true);
             }
             return;
         }
 
         if (sType === 'object') {
             this._element = [this._selector];
+            this[0] = this._selector;
         }
     }
 
 
-    _collectionToArray(collection) {
+    _collectionToArray(collection, setThis = false) {
         if (!collection) return [];
 
         let total = collection.length;
@@ -464,6 +477,7 @@ class DOMElement {
         let i = 0;
 
         while (i < total) {
+            if (setThis) this[i] = collection[i];
             res[i] = collection[i];
             i++;
         }
