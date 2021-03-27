@@ -296,7 +296,14 @@ class DOMElement {
 
         if (!this._element[0]) return undefined;
 
-        return this._element[0].getAttribute(attr);
+        if (attr.match(/^data-/)) {
+            attr = dom.toCamelCase(attr.replace(/^data-/, ''));
+            return this._element[0].dataset[attr];
+        }
+
+        attr = dom.toCamelCase(attr);
+
+        return this._element[0][attr];
     }
 
 

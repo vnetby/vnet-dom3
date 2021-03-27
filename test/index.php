@@ -27,7 +27,7 @@
         </main>
 
         <footer class="footer">
-
+            <input type="text" class="test-input" value="some" data-test-attr="data value">
         </footer>
 
     </div>

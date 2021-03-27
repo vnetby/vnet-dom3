@@ -275,6 +275,13 @@ class DOM {
     }
 
 
+    toCamelCase(str) {
+        return str.replace(/-./g, function (letter, index) {
+            return letter.replace('-', '').toUpperCase();
+        });
+    }
+
+
 
     _getRequestData(data) {
         if (!data) return null;
