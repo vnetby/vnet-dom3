@@ -40,8 +40,10 @@ const attrs = (el, props) => {
 
         if (k === "class" || k === 'className') {
             if (!val) continue;
-            const classes = Array.isArray(val) ? val : [val];
-            el.classList.add(...classes);
+            el.setAttribute('class', val);
+            // const classes = Array.isArray(val) ? val : [val];
+            // console.log(el);
+            // el.classList.add(...classes);
             continue;
         }
 

@@ -10,10 +10,26 @@ import { setSlide, nextSlide } from "../../../modules/cssSlider";
 import "../../css/dev/index.scss";
 
 import dom from "../../../index.js";
+import domJSX from "../../../modules/domJSX";
 
 
 
 const init = () => {
+
+    let file = { name: 'asdasdasdasdasd.ksd' };
+
+    let div = (
+        <div className="list-col loader-col">
+            <div className="file-loader">
+                <div className="preloader">
+                </div>
+                <div className="name">{file.name}</div>
+            </div>
+        </div>
+    );
+
+    console.log(div);
+
     // dom('.form').each(form => {
     // form = dom(form);
     // console.log(form);
