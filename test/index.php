@@ -26,8 +26,15 @@
             ?>
         </main>
 
-        <footer class="footer">
+        <form action="" class="form">
             <input type="text" class="test-input" value="some" data-test-attr="data value">
+            <input type="text" class="test-input" value="some" data-test-attr="data value">
+            <input type="text" class="test-input" value="some" data-test-attr="data value">
+            <input type="text" class="test-input" value="some" data-test-attr="data value">
+            <input type="text" class="test-input" value="some" data-test-attr="data value">
+        </form>
+
+        <footer class="footer">
         </footer>
 
     </div>

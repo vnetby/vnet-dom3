@@ -14,6 +14,10 @@ import dom from "../../../index.js";
 
 
 const init = () => {
+    // dom('.form').each(form => {
+    // form = dom(form);
+    // console.log(form);
+    // })
     // const showValue = input => {
     //     console.log(input.attr('value'));
     // }

@@ -401,7 +401,7 @@ class DOMElement {
     _setArguments(selector, context, single) {
         let selectType = typeof selector;
 
-        if (selectType === 'object' && typeof selector.length !== 'undefined') {
+        if (selectType === 'object' && typeof selector.length !== 'undefined' && !selector.tagName) {
             this._selector = selector;
             this._isSingle = false;
             this._context = dom.body;
