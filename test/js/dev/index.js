@@ -16,19 +16,21 @@ import domJSX from "../../../modules/domJSX";
 
 const init = () => {
 
-    let file = { name: 'asdasdasdasdasd.ksd' };
+    // dom('.form').html('<input type="text" value="test">');
 
-    let div = (
-        <div className="list-col loader-col">
-            <div className="file-loader">
-                <div className="preloader">
-                </div>
-                <div className="name">{file.name}</div>
-            </div>
-        </div>
-    );
+    // let file = { name: 'asdasdasdasdasd.ksd' };
 
-    console.log(div);
+    // let div = (
+    //     <div className="list-col loader-col">
+    //         <div className="file-loader">
+    //             <div className="preloader">
+    //             </div>
+    //             <div className="name">{file.name}</div>
+    //         </div>
+    //     </div>
+    // );
+
+    // console.log(div);
 
     // dom('.form').each(form => {
     // form = dom(form);
@@ -57,8 +59,8 @@ const init = () => {
     // dom('.js-slider').module('cssSlider').on('init', (e, _slider) => {
     // });
 
-    // testDOM();
-    // testJQuery();
+    testDOM();
+    testJQuery();
 }
 
 
@@ -70,6 +72,7 @@ const testJQuery = () => {
     let time = performance.now();
 
     for (let i = 0; i < 10000; i++) {
+        dom('.form').html('<input type="text" value="test">');
         // $('.test-input').attr('value');
         // $('div').filter((i, item) => !item.classList.contains('dropdown')).addClass('active').removeClass('active');
         // $('.js-toggle-dropdown').parent().addClass('test');
@@ -86,6 +89,7 @@ const testDOM = () => {
     let time = performance.now();
 
     for (let i = 0; i < 10000; i++) {
+        dom('.form').html('<input type="text" value="test">');
         // dom('.test-input').attr('value');
         // dom('div').filter(item => !item.classList.contains('dropdown')).addClass('active').removeClass('active');
     }

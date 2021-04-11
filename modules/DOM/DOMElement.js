@@ -262,6 +262,12 @@ class DOMElement {
     }
 
 
+    html(str) {
+        this.each(el => el.innerHTML = str);
+        return this;
+    }
+
+
     addClass(className) {
         return this.each(el => dom.addClass(el, className));
     }
