@@ -263,6 +263,11 @@ class DOMElement {
 
 
     html(str) {
+        if (typeof str === 'undefined') {
+            let html = '';
+            this.each(el => html += el.innerHTML);
+            return html;
+        }
         this.each(el => el.innerHTML = str);
         return this;
     }

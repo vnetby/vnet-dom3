@@ -15,52 +15,9 @@ import domJSX from "../../../modules/domJSX";
 
 
 const init = () => {
-
-    // dom('.form').html('<input type="text" value="test">');
-
-    // let file = { name: 'asdasdasdasdasd.ksd' };
-
-    // let div = (
-    //     <div className="list-col loader-col">
-    //         <div className="file-loader">
-    //             <div className="preloader">
-    //             </div>
-    //             <div className="name">{file.name}</div>
-    //         </div>
-    //     </div>
-    // );
-
-    // console.log(div);
-
-    // dom('.form').each(form => {
-    // form = dom(form);
-    // console.log(form);
-    // })
-    // const showValue = input => {
-    //     console.log(input.attr('value'));
-    // }
-    // dom('.test-input').each(input => {
-    //     input = dom(input);
-    //     showValue(input);
-    //     input.on('click focus blur change input', e => {
-    //         showValue(input);
-    //     })
-    // });
-    // let el = dom('.js-toggle-dropdown').map();
-    // let items = dom('.js-toggle-dropdown');
-    // dom('.js-toggle-dropdown').module('dropdown');
-    // dom('.js-dom-tabs').module('tabs');
-
-    // dom('.js-toggle-slide').on('click', (e) => {
-    //     e.preventDefault();
-    //     dom(e.currentTarget).next().toggleSlide();
-    // });
-
-    // dom('.js-slider').module('cssSlider').on('init', (e, _slider) => {
-    // });
-
-    testDOM();
-    testJQuery();
+    console.log(dom('.section-title').html());
+    // testDOM();
+    // testJQuery();
 }
 
 
@@ -72,7 +29,7 @@ const testJQuery = () => {
     let time = performance.now();
 
     for (let i = 0; i < 10000; i++) {
-        dom('.form').html('<input type="text" value="test">');
+        dom('.form').find('.section-title').parent().next();
         // $('.test-input').attr('value');
         // $('div').filter((i, item) => !item.classList.contains('dropdown')).addClass('active').removeClass('active');
         // $('.js-toggle-dropdown').parent().addClass('test');
@@ -89,7 +46,8 @@ const testDOM = () => {
     let time = performance.now();
 
     for (let i = 0; i < 10000; i++) {
-        dom('.form').html('<input type="text" value="test">');
+        $('.section-title').parent().next();
+        // dom('.form').html('<input type="text" value="test">');
         // dom('.test-input').attr('value');
         // dom('div').filter(item => !item.classList.contains('dropdown')).addClass('active').removeClass('active');
     }
